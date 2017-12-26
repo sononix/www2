@@ -25,16 +25,13 @@
 debug = false
 checkNewVersion = true
 logLevel = "ERROR"
-defaultEntryPoints = ["https","http"]
 
+
+defaultEntryPoints = ["http"]
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
-  address = ":443"
-  [entryPoints.https.tls]
+
 
 [retry]
 
@@ -42,11 +39,10 @@ defaultEntryPoints = ["https","http"]
 endpoint = "unix:///var/run/docker.sock"
 domain = "nua.media"
 watch = true
-exposedbydefault = false
 
 [acme]
 email = "admin@nua.media"
-storage = "acme.json"
+storageFile = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 OnHostRule = true
 
