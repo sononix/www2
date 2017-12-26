@@ -19,8 +19,8 @@ services:
       - web
     labels:
       - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:whoami.docker.localhost"
-  
+      - "traefik.frontend.rule=Host:nua.media"
+
 networks:
   webgateway:
     driver: bridge
