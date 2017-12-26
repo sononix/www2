@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   proxy:
@@ -7,7 +7,8 @@ services:
     networks:
       - webgateway
     ports:
-      - "8080:8080"
+      - "9000:80"
+      - "9001:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/etc/traefik/traefik.toml
@@ -19,6 +20,7 @@ services:
     labels:
       - "traefik.backend=whoami"
       - "traefik.frontend.rule=Host:nua.media"
+      - "traefik.port=80"
 
 networks:
   webgateway:
