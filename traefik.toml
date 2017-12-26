@@ -162,3 +162,8 @@ swarmmode = false
 #  cert = "/etc/ssl/docker.crt"
 #  key = "/etc/ssl/docker.key"
 #  insecureskipverify = true
+[frontends]
+  [frontends.frontend1]
+  backend = "whoami"
+    [frontends.frontend1.routes.test_1]
+    rule = "Host:www.nua.media,nua.media
