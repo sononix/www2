@@ -18,7 +18,7 @@ services:
     networks:
       - web
     labels:
-      - "traefik.backend=whoami"
+      - "traefik.backend=backend-whoami"
       - "traefik.frontend.rule=Host:nua.media"
       - "traefik.port=80"
 
