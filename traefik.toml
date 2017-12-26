@@ -111,6 +111,6 @@ address = ":8080"
 
 [frontends]
   [frontends.frontend1]
-  backend = "backend-whoami"
+  backend = "whoami"
     [frontends.frontend1.routes.test_1]
     rule = "Host:www.nua.media,nua.media"
