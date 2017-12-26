@@ -1,61 +1,29 @@
-version: "3.3"
+version: '2'
+
 services:
-
-  # mysite1:
-    # image: abiosoft/caddy
-    # networks:
-    #   - frontend
-    # # these labels are now to be found in the toml file
-    # labels:
-    #   - "traefik.backend=mysite1"
-    #   - "traefik.enable=true"
-    #   - "traefik.frontend.rule=Host:nua.media"
-    #   - "traefik.frontend.passHostHeader=true"
-    #   - "traefik.domain=nua.media"
-    #   - "traefik.frontend.entryPoints=http"
-    # volumes:
-    #   - ./Caddyfile:/etc/Caddyfile
-    #   - ./site1:/srv/webapp/current/public
-    # container_name: nuamedia
-    # ports:
-    #   - "80:80"
-    #   - "443:443"
-
-
-    #
-    #
-    # deploy:
-    #   replicas: 1
-
-  traefik:
-    image: traefik:1.5
-    command: -c /dev/null --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-    # command: --web \
-    #   --docker \
-    #   --docker.watch \
-    #   --docker.domain=mysite1.com \
-    #   --logLevel=DEBUG
+  proxy:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     networks:
-      - frontend
+      - webgateway
     ports:
       - "80:80"
-      - "443:443"
       - "8080:8080"
-    labels:
-      - "traefik.passHostHeader=true"
-      - "traefik.accesslogsfile=/dev/stdout"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # - /dev/null:/traefik.toml
-      - ./traefik.toml:/etc/traefik/traefik.toml
-      - ./acme.json:/acme.json
-      - ./logfiles:/dev/stdout
-    container_name: traefik
-    # deploy:
-    #   placement:
-    #     constraints: [node.role==manager]
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
 
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - web
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:whoami.docker.localhost"
+  
 networks:
-  frontend:
+  webgateway:
+    driver: bridge
+  web:
     external:
       name: traefik_webgateway
