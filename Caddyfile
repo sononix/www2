@@ -1,0 +1,5 @@
+nua.media, http://nua.media {
+    root /srv/webapp/current/public
+    header / Cache-Control "max-age=86400"
+    header / Content-Location "http://nua.media"
+}
