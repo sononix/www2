@@ -1,30 +1,36 @@
 version: '3'
-
 services:
-  proxy:
-    image: traefik
-    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-    networks:
-      - webgateway
+  lb:
+    image: traefik:latest
+    command: >
+      --web --docker --docker.swarmmode
+      --docker.domain=traefik --docker.watch
+      --accesslogsfile=/dev/stdout --logLevel=DEBUG
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
     ports:
       - "9000:80"
       - "9001:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/etc/traefik/traefik.toml
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
 
-  whoami:
-    image: emilevauge/whoami
-    networks:
-      - web
-    labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:nua.media"
-      - "traefik.port=80"
+  nginx:
+    image: 'nginx'
+    deploy:
+      labels:
+        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.backend=nginx"
+        - "traefik.port=80"
+        - "traefik.weight=5"
 
-networks:
-  webgateway:
-    driver: bridge
-  web:
-    external:
-      name: traefik_webgateway
+  helloworld:
+    image: dockercloud/hello-world
+    deploy:
+      labels:
+        - "traefik.frontend.rule=PathPrefix:/hello/"
+        - "traefik.backend=hello"
+        - "traefik.port=80"
+        - "traefik.weight=7"
