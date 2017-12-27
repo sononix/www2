@@ -4,7 +4,7 @@ services:
     image: 'nginx'
     labels:
       - traefik.backend=blog
-      - traefik.frontend.rule=Host:blog.example.com
+      - traefik.frontend.rule=Host:nua.media
       - traefik.docker.network=proxy
       - traefik.port=80
     networks:
