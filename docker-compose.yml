@@ -2,7 +2,7 @@ version: '3'
 services:
   lb:
     image: traefik:latest
-    command: --web --docker --docker.domain=traefik --docker.watch --accesslogsfile=/dev/stdout --logLevel=DEBUG
+    command: --web --docker --docker.domain=nua.media --docker.watch --accesslogsfile=/dev/stdout --logLevel=DEBUG
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /dev/null:/traefik.toml
