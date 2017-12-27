@@ -10,6 +10,16 @@ services:
     networks:
       - internal
       - proxy
+  caddy:
+    image: 'abiosoft/caddy'
+    labels:
+      - traefik.backend=caddy
+      - traefik.frontend.rule=Host:nua.co
+      - traefik.docker.network=proxy
+      - traefik.port=2015
+    networks:
+      - internal
+      - proxy
 
 networks:
   proxy:
