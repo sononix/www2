@@ -3,7 +3,7 @@ services:
   nginx:
     image: 'nginx'
     labels:
-      - traefik.backend=blog
+      - traefik.backend=nginx
       - traefik.frontend.rule=Host:nua.media
       - traefik.docker.network=proxy
       - traefik.port=80
