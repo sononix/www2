@@ -1,29 +1,18 @@
-version: '3'
+version: "3"
 services:
-  lb:
-    image: traefik:latest
-    command: --web --docker --docker.domain=nua.media --docker.watch --accesslogsfile=/dev/stdout --logLevel=DEBUG
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/null:/traefik.toml
-    ports:
-      - "9000:80"
-      - "9001:8080"
-
   nginx:
     image: 'nginx'
-    deploy:
-      labels:
-        - "traefik.frontend.rule=PathPrefix:/"
-        - "traefik.backend=nginx"
-        - "traefik.port=80"
-        - "traefik.weight=5"
+    labels:
+      - traefik.backend=blog
+      - traefik.frontend.rule=Host:blog.example.com
+      - traefik.docker.network=proxy
+      - traefik.port=80
+    networks:
+      - internal
+      - proxy
 
-  helloworld:
-    image: dockercloud/hello-world
-    deploy:
-      labels:
-        - "traefik.frontend.rule=PathPrefix:/hello/"
-        - "traefik.backend=hello"
-        - "traefik.port=80"
-        - "traefik.weight=7"
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
