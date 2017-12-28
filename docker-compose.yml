@@ -3,20 +3,20 @@ services:
   nginx:
     image: 'nginx'
     labels:
-      - traefik.backend=nginx
-      - traefik.frontend.rule=Host:blog.nua.media
-      - traefik.docker.network=proxy
-      - traefik.port=80
+      - "traefik.backend=nginx"
+      - "traefik.frontend.rule=Host:blog.nua.media"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=80"
     networks:
       - internal
       - proxy
   caddy:
     image: 'abiosoft/caddy'
     labels:
-      - traefik.backend=caddy
-      - traefik.frontend.rule=Host:blog.nua.co
-      - traefik.docker.network=proxy
-      - traefik.port=2015
+      - "traefik.backend=caddy"
+      - "traefik.frontend.rule=Host:blog.nua.co"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=2015"
     networks:
       - internal
       - proxy
