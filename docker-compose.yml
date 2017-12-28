@@ -4,7 +4,7 @@ services:
     image: 'nginx'
     labels:
       - traefik.backend=nginx
-      - traefik.frontend.rule=Host:nua.media,www.nua.media
+      - traefik.frontend.rule=Host:nua.media,www.nua.media,blog.nua.media
       - traefik.docker.network=proxy
       - traefik.port=80
     networks:
@@ -14,7 +14,7 @@ services:
     image: 'abiosoft/caddy'
     labels:
       - traefik.backend=caddy
-      - traefik.frontend.rule=Host:nua.co,www.nua.co
+      - traefik.frontend.rule=Host:nua.co,www.nua.co,blog.nua.co
       - traefik.docker.network=proxy
       - traefik.port=2015
     networks:
