@@ -1,12 +1,12 @@
 version: "3"
 services:
-  caddy2:
-    image: 'abiosoft/caddy'
+  nginx:
+    image: 'nginx'
     labels:
-      - "traefik.backend=caddy2"
+      - "traefik.backend=nginx"
       - "traefik.frontend.rule=Host:www.nua.media,nua.media"
       - "traefik.docker.network=proxy"
-      - "traefik.port=2015"
+      - "traefik.port=80"
     networks:
       - internal
       - proxy
@@ -17,6 +17,9 @@ services:
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./site1:/srv/webapp/current/public
     networks:
       - internal
       - proxy
