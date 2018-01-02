@@ -1,13 +1,15 @@
 version: "3"
 services:
-  wwwnua:
-    image: 'emilevauge/whoami'
+  caddy:
+    image: 'abiosoft/caddy'
     labels:
-      - "traefik.backend=wwwnua"
+      - "traefik.backend=caddy"
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
-    # volumes:
-      # - ./Caddyfile:/etc/Caddyfile
-      # - ./site1:/srv/webapp/current/public
+      - "traefik.docker.network=proxy"
+      - "traefik.port=2015"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./site1:/srv/webapp/current/public
     networks:
       - internal
       - proxy
@@ -21,6 +23,15 @@ services:
     networks:
       - internal
       - proxy
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - internal
+      - proxy
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
+
 networks:
   proxy:
     external: true
