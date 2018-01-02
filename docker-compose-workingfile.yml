@@ -7,7 +7,6 @@ services:
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
-      - "traefik.port=443"
     volumes:
       # - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
