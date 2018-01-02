@@ -1,51 +1,52 @@
 version: "3"
 services:
-  caddy:
+  # caddy:
+  #   image: 'abiosoft/caddy'
+  #   labels:
+  #     - "traefik.backend=caddy"
+  #     - "traefik.frontend.rule=Host:www.nua.co,nua.co"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.port=2015"
+  #     - "traefik.port=443"
+  #   volumes:
+  #     # - ./Caddyfile:/etc/Caddyfile
+  #     - ./site1:/srv/webapp/current/public
+  #   networks:
+  #     - internal
+  #     - proxy
+  # nginx:
+  #   image: 'nginx'
+  #   labels:
+  #     - "traefik.backend=nginx"
+  #     - "traefik.frontend.rule=Host:www.nua.media,nua.media"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.port=80"
+  #   networks:
+  #     - internal
+  #     - proxy
+  # whoami:
+  #   image: emilevauge/whoami
+  #   networks:
+  #     - internal
+  #     - proxy
+  #   labels:
+  #     - "traefik.backend=whoami"
+  #     - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
+
+  caddyhttps:
     image: 'abiosoft/caddy'
     labels:
-      - "traefik.backend=caddy"
+      - "traefik.backend=caddyhttps"
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
-      # - ./Caddyfile:/etc/Caddyfile
+      - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
     networks:
       - internal
       - proxy
-  nginx:
-    image: 'nginx'
-    labels:
-      - "traefik.backend=nginx"
-      - "traefik.frontend.rule=Host:www.nua.media,nua.media"
-      - "traefik.docker.network=proxy"
-      - "traefik.port=80"
-    networks:
-      - internal
-      - proxy
-  whoami:
-    image: emilevauge/whoami
-    networks:
-      - internal
-      - proxy
-    labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
-
-  # caddyhttps:
-  #   image: 'abiosoft/caddy'
-  #   labels:
-  #     - "traefik.backend=caddyhttps"
-  #     - "traefik.frontend.rule=Host:www.nua.co,nua.co"
-  #     - "traefik.docker.network=proxy"
-  #     - "traefik.port=2015"
-  #   volumes:
-  #     - ./Caddyfile:/etc/Caddyfile
-  #     - ./site1:/srv/webapp/current/public
-  #   networks:
-  #     - internal
-  #     - proxy
 
 networks:
   proxy:
