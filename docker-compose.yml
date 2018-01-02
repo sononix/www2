@@ -5,7 +5,7 @@ services:
     labels:
       - "traefik.backend=wwwnua"
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
-    volumes:
+    # volumes:
       # - ./Caddyfile:/etc/Caddyfile
       # - ./site1:/srv/webapp/current/public
     networks:
