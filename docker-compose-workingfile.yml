@@ -1,7 +1,7 @@
 version: "3"
 services:
   caddy:
-    image: 'emilevauge/whoami'
+    image: 'abiosoft/caddy'
     labels:
       - "traefik.backend=caddy"
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
@@ -23,6 +23,14 @@ services:
     networks:
       - internal
       - proxy
+  whoami:
+    image: emilevauge/whoami
+    networks:
+      - internal
+      - proxy
+    labels:
+      - "traefik.backend=whoami"
+      - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
 
 networks:
   proxy:
