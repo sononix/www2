@@ -44,6 +44,7 @@ services:
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
+      - ./.caddy/acme:.caddy/acme
     networks:
       - internal
       - proxy
