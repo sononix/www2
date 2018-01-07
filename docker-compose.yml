@@ -9,31 +9,29 @@ services:
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
-      - ./Caddyfile:/etc/Caddyfile
+      # - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
-    cap_add:
-      - NET_BIND_SERVICE
     networks:
       - internal
       - proxy
-  nginx:
-    image: 'nginx'
-    labels:
-      - "traefik.backend=nginx"
-      - "traefik.frontend.rule=Host:www.nua.media,nua.media"
-      - "traefik.docker.network=proxy"
-      - "traefik.port=80"
-    networks:
-      - internal
-      - proxy
-  whoami:
-    image: emilevauge/whoami
-    networks:
-      - internal
-      - proxy
-    labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
+  # nginx:
+  #   image: 'nginx'
+  #   labels:
+  #     - "traefik.backend=nginx"
+  #     - "traefik.frontend.rule=Host:www.nua.media,nua.media"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.port=80"
+  #   networks:
+  #     - internal
+  #     - proxy
+  # whoami:
+  #   image: emilevauge/whoami
+  #   networks:
+  #     - internal
+  #     - proxy
+  #   labels:
+  #     - "traefik.backend=whoami"
+  #     - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
 
   # caddyhttps:
   #   image: 'abiosoft/caddy'
