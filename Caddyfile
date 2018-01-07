@@ -1,6 +1,6 @@
 *.nua.co {
     root /srv/webapp/current/public
-    tls admin@nua.co
+    tls admin@nua.com
     header / Cache-Control "max-age=86400"
     header / Content-Location "http://www.nua.co"
 }
