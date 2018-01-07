@@ -11,8 +11,8 @@ services:
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
-    environment:
-
+    cap_add:
+      - NET_BIND_SERVICE
     networks:
       - internal
       - proxy

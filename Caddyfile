@@ -1,10 +1,6 @@
-nua.co, www.nua.co {
+*.nua.co {
     root /srv/webapp/current/public
-
-    tls {
-        dns route53
-    }
-
+    tls admin@nua.co
     header / Cache-Control "max-age=86400"
     header / Content-Location "http://www.nua.co"
 }
