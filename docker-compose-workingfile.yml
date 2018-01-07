@@ -13,24 +13,24 @@ services:
     networks:
       - internal
       - proxy
-  nginx:
-    image: 'nginx'
-    labels:
-      - "traefik.backend=nginx"
-      - "traefik.frontend.rule=Host:www.nua.media,nua.media"
-      - "traefik.docker.network=proxy"
-      - "traefik.port=80"
-    networks:
-      - internal
-      - proxy
-  whoami:
-    image: emilevauge/whoami
-    networks:
-      - internal
-      - proxy
-    labels:
-      - "traefik.backend=whoami"
-      - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
+  # nginx:
+  #   image: 'nginx'
+  #   labels:
+  #     - "traefik.backend=nginx"
+  #     - "traefik.frontend.rule=Host:www.nua.media,nua.media"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.port=80"
+  #   networks:
+  #     - internal
+  #     - proxy
+  # whoami:
+  #   image: emilevauge/whoami
+  #   networks:
+  #     - internal
+  #     - proxy
+  #   labels:
+  #     - "traefik.backend=whoami"
+  #     - "traefik.frontend.rule=Host:www.sononix.com,sononix.com"
 
 networks:
   proxy:

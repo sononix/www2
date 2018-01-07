@@ -117,6 +117,6 @@ address = ":8080"
 
 [frontends]
   [frontends.frontend1]
-  backend = "whoami"
+  backend = "caddy"
     [frontends.frontend1.routes.test_1]
     rule = "Host:www.nua.co,nua.co"
