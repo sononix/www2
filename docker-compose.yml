@@ -4,13 +4,14 @@ services:
     image: 'abiosoft/caddy'
     labels:
       - "traefik.backend=caddy"
-      - "traefik.frontend.rule=Host:www.nua.co,nua.co"
+      - "traefik.frontend.rule=Host:www.nua.media,nua.media"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
+      - "traefik.port=80"
       - "traefik.port=443"
     volumes:
       # - ./Caddyfile:/etc/Caddyfile
-      - ./site1:/srv/webapp/current/public  
+      - ./site1:/srv/webapp/current/public
     networks:
       - internal
       - proxy
