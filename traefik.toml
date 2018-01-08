@@ -1,39 +1,27 @@
-# defaultEntryPoints must be at the top because it should not be in any table below
-defaultEntryPoints = ["http", "https"]
+debug = true
+checkNewVersion = true
+logLevel = "ERROR"
+defaultEntryPoints = ["https","http"]
 
-[web]
-# Port for the status page
-address = ":8080"
-
-# Entrypoints, http and https
 [entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
 
-# http should be redirected to https
-[entryPoints.http]
-address = ":80"
-[entryPoints.http.redirect]
-entryPoint = "https"
-
-# https is the default
-[entryPoints.https]
-address = ":443"
-[entryPoints.https.tls]
-[[entryPoints.https.tls.certificates]]
-certFile = "/etc/letsencrypt/live/nua.media/fullchain.pem"
-keyFile = "/etc/letsencrypt/live/nua.media/privkey.pem"
-
-# Enable ACME (Let's Encrypt): automatic SSL
-[acme]
-# caServer = "https://acme-staging.api.letsencrypt.org/directory"
-email = "letsencrypt@nua.media"
-storage = "acme.json" # or "traefik/acme/account" if using KV store
-entryPoint = "https"
-onDemand = false
-OnHostRule = true
-
+[retry]
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 domain = "nua.media"
 watch = true
 exposedbydefault = false
+
+[acme]
+email = "admin@nua.media"
+storage = "acme.json"
+entryPoint = "https"
+OnHostRule = true
