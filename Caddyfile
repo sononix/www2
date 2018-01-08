@@ -1,4 +1,4 @@
-*.nua.media {
+nua.media, www.nua.media {
     root /srv/webapp/current/public
     tls /etc/letsencrypt/live/nua.media/fullchain.pem /etc/letsencrypt/live/nua.media/privkey.pem
     header / Cache-Control "max-age=86400"
