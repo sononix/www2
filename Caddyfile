@@ -1,7 +1,6 @@
 nua.media, www.nua.media {
     root /srv/webapp/current/public
-    tls /etc/nuamedia/certs/nuamedia.crt /etc/nuamedia/certs/nuamedia.key{
-        max_certs 5
+    tls /etc/nuamedia/certs/nuamedia.crt /etc/nuamedia/certs/nuamedia.key {
     }
     header / Cache-Control "max-age=86400"
     header / Content-Location "http://www.nua.media"
