@@ -8,7 +8,7 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
     volumes:
-      # - ./Caddyfile:/etc/Caddyfile
+      - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
     networks:
       - internal
@@ -17,6 +17,7 @@ services:
       - "80:80"
       - "443:443"
       - "2015:2015"
+
   # nginx:
   #   image: 'nginx'
   #   labels:
