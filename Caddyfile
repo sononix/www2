@@ -1,6 +1,6 @@
-*.nua.co {
+*.nua.media {
     root /srv/webapp/current/public
-    tls admin@nua.co
+    tls admin@nua.media
     header / Cache-Control "max-age=86400"
     header / Content-Location "http://www.nua.co"
 }
