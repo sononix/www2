@@ -7,14 +7,16 @@ services:
       - "traefik.frontend.rule=Host:www.nua.media,nua.media"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
-      - "traefik.port=80"
-      - "traefik.port=443"
     volumes:
       # - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
     networks:
       - internal
       - proxy
+    ports:
+      80:80
+      443:443
+      2015:2015
   # nginx:
   #   image: 'nginx'
   #   labels:
