@@ -2,11 +2,6 @@ version: "3"
 services:
   wwwnuamedia:
     image: 'zzrot/alpine-caddy'
-    labels:
-      - "traefik.backend=wwwnuamedia"
-      - "traefik.frontend.rule=Host:www.nua.media,nua.media"
-      - "traefik.docker.network=proxy"
-      - "traefik.port=2015"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./nuamedia:/var/www/html
@@ -16,8 +11,8 @@ services:
       - proxy
     ports:
       - "80:80"
-      # - "443:443"
-      # - "2015:2015"
+      - "443:443"
+      - "2015:2015"
 
   # nginx:
   #   image: 'nginx'
