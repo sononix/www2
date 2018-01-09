@@ -1,3 +1,3 @@
 nua.media, www.nua.media {
-    root /var/www/html/nuamedia
+    root /var/www/html
 }
