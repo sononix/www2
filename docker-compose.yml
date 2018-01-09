@@ -9,8 +9,8 @@ services:
       - "traefik.port=2015"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
-      - ./nuamedia:/var/www/html/nuamedia
-      - ./.caddy:/root/.caddy
+      - ./nuamedia:/var/www/html
+      # - ./.caddy:/root/.caddy
     networks:
       - internal
       - proxy
