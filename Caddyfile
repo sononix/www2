@@ -1,4 +1,3 @@
-nua.media, www.nua.media {
-    tls off
+nua.co, www.nua.co {
     root /srv/webapp/current/public
 }
