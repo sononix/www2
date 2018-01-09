@@ -13,10 +13,6 @@ services:
     networks:
       - internal
       - proxy
-    ports:
-      - "80:80"
-      - "443:443"
-      - "2015:2015"
 
   # nginx:
   #   image: 'nginx'
