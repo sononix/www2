@@ -1,15 +1,16 @@
 version: "3"
 services:
-  caddy:
-    image: 'abiosoft/caddy'
+  wwwnuamedia:
+    image: 'zzrot/alpine-caddy'
     labels:
-      - "traefik.backend=caddy"
+      - "traefik.backend=wwwnuamedia"
       - "traefik.frontend.rule=Host:www.nua.media,nua.media"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
-      - ./site1:/srv/webapp/current/public
+      - ./nuamedia:/var/www/html/nuamedia
+      - ./.caddy:/root/.caddy
     networks:
       - internal
       - proxy
